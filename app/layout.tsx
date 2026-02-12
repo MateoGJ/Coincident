@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   title: "Coincident Studio | We Craft The Sound You Imagined",
   description:
     "Coincident is a modern, digital-native music studio that blends artistic vision with technical precision. Vocal production, mixing, mastering & full creative collaboration.",
+  icons: {
+    icon: "/images/isologo.png",
+  },
 };
 
 export default function RootLayout({
