@@ -6,18 +6,34 @@ import Image from "next/image";
 
 const services = [
   {
-    icon: Mic,
-    title: "Vocal Production",
+    icon: Music,
+    bg: "/images/maschineSticker.svg",
+    title: "Music Production",
     includes: [
-      "Recording session",
-      "Pitch correction",
-      "Vocal editing",
-      "Creative effects",
+      "Any genre",
+      "Custom instrumentals",
+      "Full compostion, production, mix and master",
+      "Full stems delivery",
     ],
-    price: "Up to $250",
+    description: `From a spark to a fully realized record. We shape ideas into sound worlds, building arrangements, textures and sonic identities that feel inevitable. Whether you’re starting from a voice memo, a demo, or a simple chord progression, we develop it into a fully produced track ready for release.`,
+    price: "Up to $400",
+  },
+  {
+    icon: Disc3,
+    bg: "/images/ondaSticket.svg",
+    title: "Audio Editing",
+    includes: [
+      "Noise reduction",
+      "Dialogue cleanup",
+      "Timing adjustments",
+      "Restoration",
+    ],
+    description: `Precision you don’t notice, clarity you can feel. We refine performances at the microscopic level, tightening timing, enhancing feel and preserving emotion. Ideal for podcasts, voiceovers, interviews and recorded content that needs noise reduction, restoration, dialogue cleanup or seamless edits.`,
+    price: "Reach out for more info",
   },
   {
     icon: Sliders,
+    bg: "/images/mixerSticker.svg",
     title: "Mixing",
     includes: [
       "Level balancing",
@@ -25,10 +41,12 @@ const services = [
       "Spatial processing",
       "Creative automation",
     ],
+    description: `Where everything finds its place. Depth, space, weight and movement are sculpted until the track breathes as one cohesive statement. Perfect for artists who already have their recordings and want their song to sound polished, balanced and competitive across streaming platforms.`,
     price: "Up to $300",
   },
   {
     icon: Headphones,
+    bg: "/images/parlanteSticker.svg",
     title: "Mastering",
     includes: [
       "Final EQ shaping",
@@ -36,29 +54,21 @@ const services = [
       "Loudness optimization",
       "Streaming-ready export",
     ],
+    description: `The final elevation. We enhance impact, cohesion and translation across every system, ensuring your music feels finished and confident. Designed for singles, EPs or albums that need professional loudness, clarity and consistency before distribution.`,
     price: "Up to $150",
   },
   {
-    icon: Music,
-    title: "Beat Production",
+    icon: Mic,
+    bg: "/images/estrellaMicSticker.svg",
+    title: "Vocal Production",
     includes: [
-      "Custom instrumental",
-      "Arrangement",
-      "Sound selection",
-      "Full stems delivery",
+      "Recording session",
+      "Pitch correction",
+      "Vocal editing",
+      "Creative effects",
     ],
-    price: "Up to $400",
-  },
-  {
-    icon: Disc3,
-    title: "Sound Design",
-    includes: [
-      "Custom FX",
-      "Atmospheres",
-      "Textures",
-      "Unique sonic identity",
-    ],
-    price: "Up to $200",
+    description: `The voice is the narrative. We shape it with precision and intention, transforming raw recordings into powerful, controlled performances. From detailed editing and manual tuning to timing alignment, creative layering and digital harmonies, every element is crafted by hand. We refine, enhance and integrate the vocals into the mix so they feel present, emotional and undeniably polished.`,
+    price: "Reach out for more info",
   },
 ];
 
@@ -66,41 +76,52 @@ function ServiceCard({ service, onClick }: any) {
   return (
     <div
       onClick={onClick}
-      className="group cursor-pointer w-[380px] h-[240px] bg-background/60 backdrop-blur-md border border-border/50 rounded-2xl p-8 transition-all duration-500 relative overflow-hidden hover:scale-[1.04] hover:border-primary hover:shadow-[0_0_50px_rgba(168,85,247,0.25)]"
+      className="group cursor-pointer w-[380px] h-[220px] 
+                bg-zinc-900/60 backdrop-blur-md 
+                border border-white/10 
+                rounded-2xl p-8 
+                transition-all duration-300 
+                relative overflow-hidden 
+                hover:border-primary hover:bg-zinc-900/80"
     >
-      {/* Soft glow layer */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 via-transparent to-primary/10" />
+      <div className="flex justify-between items-center h-full">
+        
+        {/* Left Content */}
+        <div className="flex flex-col justify-between h-full">
+          <div>
+            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 relative">
+  
+              {/* Glow */}
+              <div className="absolute inset-0 rounded-lg bg-primary/15 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-      {/* Animated onda */}
-      <div className="absolute inset-0 opacity-100 group-hover:opacity-30 transition-opacity duration-500">
-        <div className="absolute inset-0 animate-[float_12s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-700">
+              <service.icon className="w-6 h-6 text-primary relative z-10 transition-all duration-300 group-hover:scale-110" />
+            </div>
+
+            <h3 className="text-xl font-bold text-white">
+              {service.title}
+            </h3>
+          </div>
+
+          <p className="text-sm text-zinc-400">
+            Click to see details
+          </p>
+        </div>
+
+        {/* Right Illustration */}
+        <div className="relative w-32 h-32 opacity-80">
           <Image
-            src="/images/onda.svg"
+            src={service.bg}
             alt=""
             fill
             className="object-contain"
           />
         </div>
-      </div>
 
-      <div className="relative z-10 flex flex-col justify-between h-full">
-        <div>
-          <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-            <service.icon className="w-7 h-7 text-primary" />
-          </div>
-
-          <h3 className="text-xl font-bold">
-            {service.title}
-          </h3>
-        </div>
-
-        <p className="text-sm text-muted-foreground">
-          Click to see details
-        </p>
       </div>
     </div>
   );
 }
+
 
 export default function Services() {
   const [activeService, setActiveService] = useState<any>(null);
@@ -108,15 +129,13 @@ export default function Services() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("/sounds/open2.mp3");
-    audioRef.current.volume = 1; // sutil
+    audioRef.current = new Audio("/sounds/open.mp3");
+    audioRef.current.volume = 1;
   }, []);
 
   useEffect(() => {
     if (activeService) {
       setShowModal(true);
-
-      // Play sound
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
         audioRef.current.play().catch(() => {});
@@ -130,11 +149,7 @@ export default function Services() {
   };
 
   return (
-    <section
-      id="services"
-      className="relative py-24 overflow-hidden"
-    >
-      {/* Background */}
+    <section id="services" className="relative py-24 overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src="/images/services-bg.png"
@@ -144,7 +159,6 @@ export default function Services() {
         />
       </div>
 
-      {/* Section Shadow Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
 
       <div className="relative z-10 px-6 lg:px-10">
@@ -157,7 +171,7 @@ export default function Services() {
           </h2>
         </div>
 
-        <div className="max-w-7xl mx-auto flex flex-col items-center gap-12">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-16">
           <div className="flex flex-wrap justify-center gap-12">
             {services.slice(0, 3).map((service) => (
               <ServiceCard
@@ -192,38 +206,33 @@ export default function Services() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`relative bg-background rounded-2xl p-10 max-w-lg w-full overflow-hidden transform transition-all duration-500 ${
+            className={`relative rounded-2xl p-10 max-w-lg w-full overflow-hidden transform transition-all duration-500 ${
               showModal
                 ? "opacity-100 scale-100 translate-y-0"
                 : "opacity-0 scale-90 translate-y-6"
             }`}
           >
-            {/* Background teclas */}
+            {/* Fondo teclas */}
             <div className="absolute inset-0">
               <Image
                 src="/images/teclas.png"
                 alt=""
                 fill
-                className="object-cover opacity-70"
+                className="object-cover"
               />
+              <div className="absolute inset-0 bg-black/55" />
             </div>
 
-            {/* Animated Logo */}
-            <div className="absolute top-6 right-6 opacity-90 animate-[logoFloat_6s_ease-in-out_infinite]">
-              <Image
-                src="/images/isologo.png"
-                alt=""
-                width={45}
-                height={45}
-              />
-            </div>
-
-            <div className="relative z-10 animate-[fadeUp_0.6s_ease]">
-              <h3 className="text-2xl font-bold mb-6">
+            <div className="relative z-10 animate-[fadeUp_0.6s_ease] text-white">
+              <h3 className="text-primary text-2xl font-bold mb-6">
                 {activeService.title}
               </h3>
 
-              <ul className="space-y-3 mb-6">
+              <p className="text-sm text-white/80 leading-relaxed mb-8">
+                {activeService.description}
+              </p>
+
+              <ul className="space-y-3 mb-6 text-white/90">
                 {activeService.includes.map((item: string) => (
                   <li key={item}>• {item}</li>
                 ))}
@@ -244,24 +253,18 @@ export default function Services() {
         </div>
       )}
 
-      <style jsx>{`
+      {/* <style jsx>{`
         @keyframes float {
           0% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-10px) rotate(2deg); }
           100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        @keyframes logoFloat {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-6px); }
-          100% { transform: translateY(0px); }
-        }
-
         @keyframes fadeUp {
           0% { opacity: 0; transform: translateY(20px); }
           100% { opacity: 1; transform: translateY(0); }
         }
-      `}</style>
+      `}</style> */}
     </section>
   );
 }

@@ -6,27 +6,27 @@ import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 const steps = [
   {
     number: "01",
-    title: "Discovery",
+    title: "Alignment",
     description:
-      "We listen to your references, understand your vision, and define the sonic direction together.",
+      "Every project begins with clarity. You share your material, references and goals. We define the scope, timeline and creative direction so expectations are aligned from the start.",
   },
   {
     number: "02",
-    title: "Production",
+    title: "Preparation",
     description:
-      "Hands-on creative work. Recording, arranging, producing, and shaping every element of your track.",
+      "We organize and evaluate the material in depth. Sessions are structured, technical details are reviewed, and a clear roadmap is established before any creative decisions are made.",
   },
   {
     number: "03",
-    title: "Refinement",
+    title: "Execution",
     description:
-      "Mixing, mastering, and polishing until every detail sounds exactly how you imagined it.",
+      "This is where precision meets intention. Whether it’s production, editing, mixing, mastering or vocal work, we focus on detail, balance and emotional impact. Every decision serves the final result.",
   },
   {
     number: "04",
-    title: "Delivery",
+    title: "Finalization",
     description:
-      "Final files delivered in all formats you need, ready for release on any platform worldwide.",
+      "After revisions and approval, we deliver optimized, release-ready files in the formats you need. Clean, professional and ready for distribution or publication.",
   },
 ];
 

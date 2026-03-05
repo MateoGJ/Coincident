@@ -15,38 +15,34 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" }, // 👈 agregar
-  { label: "Works", href: "#portfolio" },
-  { label: "Contact", href: "#contact" },
+    { label: "About", href: "#about" },
+    { label: "Services", href: "#services" },
+    { label: "Works", href: "#portfolio" },
+    { label: "Reviews", href: "#reviews" },
+    { label: "Contact", href: "#contact" },
   ];
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-xl border-b border-border"
+          ? "bg-background/21 backdrop-blur-xl border-b border-border"
           : "bg-transparent"
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4 lg:px-10">
+        
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <a href="#hero" className="flex items-center gap-4 group">
+          
+          {/* Logotipo */}
           <Image
-            src="/images/isologo.png"
+            src="/images/logoNormalFull.svg"
             alt="Coincident Studio"
-            width={32}
-            height={32}
-            className="transition-transform duration-300 group-hover:rotate-12"
+            width={120}
+            height={60}
+            className="transition-all duration-300 group-hover:opacity-90"
           />
-          <div className="flex flex-col leading-none">
-            <span className="text-sm font-bold tracking-wide text-foreground">
-              coincident
-            </span>
-            <span className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-              studio
-            </span>
-          </div>
         </a>
 
         {/* Tagline - hidden on mobile */}
@@ -82,7 +78,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu - fullscreen overlay */}
+      {/* Mobile Menu */}
       <div
         className={`fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-8 transition-all duration-500 md:hidden ${
           mobileOpen
@@ -105,12 +101,14 @@ export default function Navbar() {
             {link.label}
           </a>
         ))}
+
+        {/* Logo abajo en mobile */}
         <Image
-          src="/images/isologo.png"
+          src="/images/NormalLogotipo.png"
           alt=""
-          width={48}
-          height={48}
-          className="mt-8 opacity-21"
+          width={160}
+          height={50}
+          className="mt-8 opacity-40"
         />
       </div>
     </nav>

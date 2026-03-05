@@ -36,7 +36,7 @@ export default function Contact() {
           alt=""
           width={600}
           height={600}
-          className="opacity-[0.02]"
+          className="opacity-[0.21]"
         />
       </div>
 
@@ -70,40 +70,71 @@ export default function Contact() {
 
             {/* Contact info */}
             <div
-              className={`mt-12 flex flex-col gap-8 transition-all duration-1000 delay-400 ${
+              className={`mt-12 flex flex-col gap-10 transition-all duration-1000 delay-400 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
             >
+              {/* Email */}
               <div>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
                   Email
                 </span>
                 <a
-                  href="mailto:hello@coincident.studio"
+                  href="mailto:coincidentstudio@gmail.com"
                   className="flex items-center gap-2 text-foreground font-medium mt-1 hover:text-primary transition-colors group"
                 >
-                  hello@coincident.studio
+                  coincidentstudio@gmail.com
                   <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </div>
+
+              {/* Social */}
               <div>
                 <span className="text-xs text-muted-foreground uppercase tracking-wider">
                   Social
                 </span>
                 <div className="flex gap-6 mt-2">
-                  {["Instagram", "Spotify", "YouTube"].map((name) => (
-                    <a
-                      key={name}
-                      href="#"
-                      className="text-sm text-foreground hover:text-primary transition-colors relative group"
-                    >
-                      {name}
-                      <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
-                    </a>
-                  ))}
+                  <a
+                    href="https://instagram.com/tuusuario"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-foreground hover:text-primary transition-colors relative group"
+                  >
+                    Instagram
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
+                  </a>
+
+                  <a
+                    href="https://open.spotify.com/artist/tuusuario"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-foreground hover:text-primary transition-colors relative group"
+                  >
+                    Spotify
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-300" />
+                  </a>
                 </div>
+              </div>
+
+              {/* Phone */}
+              <div>
+                <span className="text-xs text-muted-foreground uppercase tracking-wider">
+                  Phone
+                </span>
+                <a
+                  href="https://wa.me/5493515334813"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-foreground font-medium mt-1 hover:text-primary transition-colors group"
+                >
+                  +54 9 3515 33-4813
+                  <span className="text-xs text-muted-foreground">
+                    (Whatsapp / iMessage only)
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
               </div>
             </div>
           </div>

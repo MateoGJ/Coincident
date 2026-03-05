@@ -10,56 +10,76 @@ export default function About() {
     <section
       id="about"
       ref={ref}
-      className="relative bg-background px-6 py-24 lg:px-10 lg:py-32"
+      className="relative px-6 py-28 lg:px-10 lg:py-40 overflow-hidden"
     >
-      <div className="max-w-5xl">
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-20">
+        <Image
+          src="/images/aboutFondoo.png"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/75 -z-10" />
+
+      <div className="max-w-4xl">
         <p
-          className={`text-xl md:text-2xl lg:text-4xl font-medium leading-relaxed text-foreground transition-all duration-1000 ${
+          className={`text-lg md:text-xl lg:text-2xl font-medium leading-relaxed text-white transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="text-primary font-bold">coincident</span> is a
-          modern, digital-native music studio that blends artistic vision with
-          technical precision.
-        </p>
-        <p
-          className={`mt-6 text-lg md:text-xl lg:text-2xl font-medium leading-relaxed text-muted-foreground transition-all duration-1000 delay-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          We help artists shape their sound, refine their ideas, and elevate
-          their music through vocal production, mixing, mastering, and full
-          creative collaboration.
+          <span className="text-primary font-bold">coincident</span>  is a digital-native music 
+          studio built at the intersection of art and  technical precision.
+
+          <br /><br />
+
+           We work with artists who care about identity, intention and detail.
+
+          <br /><br />
+
+          Operating remotely and globally, we collaborate with artists at different 
+          stages of their journey, from developing raw ideas to delivering release-ready masters.
+
+          <br /><br />
+
+          <span className="text-primary font-bold">coincident</span> exists to translate vision into sound
+           that feels inevitable.
         </p>
 
         <div
-          className={`mt-10 flex items-center gap-6 transition-all duration-1000 delay-500 ${
+          className={`mt-14 flex items-center gap-6 transition-all duration-1000 delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <a
             href="#services"
-            className="inline-block px-8 py-3 bg-primary text-primary-foreground font-bold text-sm tracking-wider uppercase rounded-full hover:shadow-[0_0_30px_rgba(232,255,0,0.3)] transition-all duration-300"
+            className="inline-block px-8 py-3 bg-primary text-black font-bold text-sm tracking-wider uppercase rounded-full hover:shadow-[0_0_30px_rgba(232,255,0,0.3)] transition-all duration-300"
           >
             Services
           </a>
+
           <a
             href="#portfolio"
-            className="inline-block px-8 py-3 border border-foreground/30 text-foreground font-bold text-sm tracking-wider uppercase rounded-full hover:border-primary hover:text-primary transition-all duration-300"
+            className="inline-block px-8 py-3 border border-white/40 text-white font-bold text-sm tracking-wider uppercase rounded-full hover:border-primary hover:text-primary transition-all duration-300"
           >
             Our Work
           </a>
         </div>
       </div>
 
-      {/* Decorative isotipo */}
-      <div className="absolute bottom-8 right-8 lg:bottom-16 lg:right-16">
+      {/* Decorative Element */}
+      <div className="absolute bottom-10 right-10 lg:bottom-20 lg:right-20">
         <Image
-          src="/images/isologo.png"
+          src="/images/ojoSticket.svg"
           alt=""
-          width={80}
-          height={80}
-          className="opacity-[0.21]"
+          width={120}
+          height={120}
+          className="opacity-80"
         />
       </div>
     </section>

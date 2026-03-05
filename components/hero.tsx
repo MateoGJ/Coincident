@@ -11,7 +11,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section id="hero" className="relative min-h-screen overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
@@ -33,10 +33,11 @@ export default function Hero() {
             loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-xs text-muted-foreground font-medium tracking-wide">
-            now accepting projects
+          <span className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
+          <span className="text-m text-muted-foreground font-medium tracking-wide">
+            Now accepting projects 
           </span>
+          <span>(3 in queue)</span>
         </div>
       </div>
 

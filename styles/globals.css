@@ -92,3 +92,33 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 20s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 24s linear infinite;
+}
+
+.animate-marquee-left-slow {
+  animation: marquee-left 35s linear infinite;
+}

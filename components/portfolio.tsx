@@ -3,49 +3,66 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
+import WaveformPlayer from "@/components/waveformPlayer";
 
-const projects = [
+const mixMaster = [
   {
-    title: "Neon Nights EP",
-    artist: "VXRA",
-    category: "Mixing & Mastering",
-    image: "/images/collage-1.png",
+    genre: "Pop",
+    before: "/audio/exsample.mp3",
+    after: "/audio/exsample.mp3",
   },
   {
-    title: "Frequencies",
-    artist: "DJ Pulse",
-    category: "Beat Production",
-    image: "/images/collage-2.png",
+    genre: "R&B",
+    before: "/audio/exsample.mp3",
+    after: "/audio/exsample.mp3",
   },
   {
-    title: "Echoes Live",
-    artist: "Luna Park",
-    category: "Sound Design",
-    image: "/images/collage-1.png",
-  },
-  {
-    title: "Analog Dreams",
-    artist: "The Collectors",
-    category: "Full Production",
-    image: "/images/collage-2.png",
+    genre: "Trap",
+    before: "/audio/exsample.mp3",
+    after: "/audio/exsample.mp3",
   },
 ];
 
+const productions = [
+  { genre: "Indie Pop", audio: "/audio/exsample.mp3" },
+  { genre: "Latin Urban", audio: "/audio/exsample.mp3" },
+  { genre: "Electronic", audio: "/audio/exsample.mp3" },
+];
+
+const youtubeVideos = [
+  "fJZrK_mtn5A",
+  "P0iBYlNTCrE",
+  "sd5WIgwQNz0",
+  "O38hUyXybsM",
+  "60ItHLz5WEA",
+];
+
 export default function Portfolio() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation(0.1);
-  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation(0.1);
+  const { ref: contentRef, isVisible: contentVisible } =
+    useScrollAnimation(0.1);
+
+  const [videoIndex, setVideoIndex] = useState(0);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  const nextVideo = () =>
+    setVideoIndex((prev) => (prev + 1) % youtubeVideos.length);
+
+  const prevVideo = () =>
+    setVideoIndex((prev) =>
+      prev === 0 ? youtubeVideos.length - 1 : prev - 1
+    );
 
   return (
     <section id="portfolio" className="relative bg-background overflow-hidden">
-      {/* Marquee Title */}
+
+      {/* ===== MARQUEE TITLE (SE MANTIENE IGUAL) ===== */}
       <div ref={titleRef} className="py-16 lg:py-24 overflow-hidden">
         <div
           className={`transition-all duration-1000 ${
             titleVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* Row 1 - outline blue */}
           <div className="overflow-hidden py-2">
             <div
               className="flex whitespace-nowrap"
@@ -61,17 +78,20 @@ export default function Portfolio() {
                   }}
                 >
                   Portfolio
-                  <span className="mx-6" style={{
-                    WebkitTextStroke: "2px hsl(55 79% 55%)",
-                    color: "transparent",
-                  }}>
+                  <span
+                    className="mx-6"
+                    style={{
+                      WebkitTextStroke: "2px hsl(55 79% 55%)",
+                      color: "transparent",
+                    }}
+                  >
                     {"*"}
                   </span>
                 </span>
               ))}
             </div>
           </div>
-          {/* Row 2 - filled blue, opposite direction */}
+
           <div className="overflow-hidden py-2">
             <div
               className="flex whitespace-nowrap"
@@ -91,88 +111,159 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Portfolio Grid */}
-      <div ref={gridRef} className="relative px-6 lg:px-10 pb-24">
-        {/* Background image */}
+      {/* ===== CONTENT ===== */}
+      <div ref={contentRef} className="relative px-6 lg:px-10 pb-32">
+
+        {/* Background */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="/images/morado.png"
+            src="/images/portfolioBG.png"
             alt=""
             fill
-            className="object-cover opacity-61"
+            className="object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         </div>
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className={`group relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-700 ${
-                gridVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-12"
-              }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={`${project.title} by ${project.artist}`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className={`object-cover transition-all duration-700 ${
-                    hoveredIndex === index ? "scale-110 brightness-75" : "scale-100 brightness-50"
-                  }`}
-                />
-              </div>
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+        <div className="relative z-10 space-y-9">
 
-              {/* Info */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
-                <span
-                  className={`inline-block text-xs font-medium text-primary uppercase tracking-wider bg-primary/10 backdrop-blur-sm px-3 py-1 rounded-full border border-primary/20 transition-all duration-500 ${
-                    hoveredIndex === index
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-2 opacity-70"
-                  }`}
-                >
-                  {project.category}
-                </span>
-                <h3 className="text-2xl lg:text-3xl font-bold text-foreground mt-3">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mt-1">
-                  {project.artist}
-                </p>
-              </div>
+          {/* ================= MIX & MASTER ================= */}
+          <div
+            className={`transition-all duration-1000 ${
+              contentVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-12"
+            }`}
+          >
+            <h2 className="text-4xl font-bold mb-16">Mix & Master</h2>
 
-              {/* Hover border glow */}
-              <div
-                className={`absolute inset-0 rounded-2xl transition-all duration-500 ${
-                  hoveredIndex === index
-                    ? "border-2 border-primary/40 shadow-[inset_0_0_30px_rgba(232,255,0,0.05)]"
-                    : "border border-border/30"
-                }`}
-              />
+            <div className="grid lg:grid-cols-3 gap-16">
+              {mixMaster.map((item, index) => (
+                <div key={index} className="space-y-8">
+                  <p className="uppercase text-sm tracking-widest text-primary">
+                    {item.genre}
+                  </p>
+
+                  <div className="space-y-6">
+                    <WaveformPlayer
+                      audio={item.before}
+                      label="Before"
+                      mutedStyle
+                    />
+
+                    <WaveformPlayer
+                      audio={item.after}
+                      label="After"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* SEPARADOR */}
+          <div className="py-12">
+            <div className="h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          </div>
+
+
+          {/* ================= LOWER GRID ================= */}
+          <div className="grid lg:grid-cols-2 gap-20 relative">
+
+            {/* -------- PRODUCTION -------- */}
+            
+            {/* Separador vertical solo en desktop */}
+            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/40 to-transparent" />
+
+            <div>
+              <h2 className="text-4xl font-bold mb-16">Production</h2>
+
+              <div className="space-y-12">
+                {productions.map((item, index) => (
+                  <div key={index} className="flex items-center gap-6">
+                    <p className="w-32 uppercase text-sm tracking-widest text-primary">
+                      {item.genre}
+                    </p>
+
+                    <div className="flex-1">
+                      <WaveformPlayer audio={item.audio} label="Track" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* -------- CLIENT RELEASES -------- */}
+            <div>
+              <h2 className="text-4xl font-bold mb-16">
+                Our Client Releases
+              </h2>
+
+              <div className="flex items-center gap-6">
+
+                {/* Flecha izquierda */}
+                <button
+                  onClick={prevVideo}
+                  className="text-primary text-3xl hover:scale-110 transition"
+                >
+                  ←
+                </button>
+
+                <div
+                  onClick={() =>
+                    setActiveVideo(youtubeVideos[videoIndex])
+                  }
+                  className="cursor-pointer aspect-video w-full bg-black rounded-xl overflow-hidden"
+                >
+                  <img
+                    src={`https://img.youtube.com/vi/${youtubeVideos[videoIndex]}/hqdefault.jpg`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Flecha derecha */}
+                <button
+                  onClick={nextVideo}
+                  className="text-primary text-3xl hover:scale-110 transition"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Decorative isotipo */}
+      {/* ===== ISOTIPO ===== */}
       <div className="absolute bottom-8 right-8">
         <Image
-          src="/images/isologo-blue.png"
+          src="/images/azarSticker.svg"
           alt=""
-          width={56}
-          height={56}
-          className="opacity-12"
+          width={90}
+          height={90}
+          className="opacity-100"
         />
       </div>
+
+      {/* ===== MODAL VIDEO ===== */}
+      {activeVideo && (
+        <div
+          onClick={() => setActiveVideo(null)}
+          className="fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center z-50"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-5xl aspect-video"
+          >
+            <iframe
+              className="w-full h-full rounded-xl"
+              src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+              allow="autoplay"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

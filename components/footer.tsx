@@ -6,18 +6,16 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto">
         {/* Top row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-12">
+          
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a href="#hero" className="group">
             <Image
-              src="/images/isologo.png"
+              src="/images/logoNormalFull.svg"
               alt="Coincident Studio"
-              width={28}
-              height={28}
-              className="transition-transform duration-300 group-hover:rotate-12"
+              width={150}
+              height={60}
+              className="transition-all duration-500 group-hover:opacity-80 group-hover:scale-[1.02]"
             />
-            <span className="text-sm font-bold text-foreground tracking-wide">
-              coincident studio
-            </span>
           </a>
 
           {/* Links */}
@@ -26,6 +24,7 @@ export default function Footer() {
               { label: "About", href: "#about" },
               { label: "Services", href: "#services" },
               { label: "Works", href: "#portfolio" },
+              { label: "Reviews", href: "#reviews" },
               { label: "Contact", href: "#contact" },
             ].map((link) => (
               <a
@@ -43,7 +42,7 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            {"© 2026 Coincident Studio. All rights reserved."}
+            © 2026 Coincident Studio. All rights reserved.
           </p>
           <p className="text-primary text-xs text-muted-foreground/50">
             We craft the sound you imagined.
